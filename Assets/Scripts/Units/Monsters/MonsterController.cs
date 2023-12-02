@@ -7,7 +7,7 @@ namespace TankGameCore
         [SerializeField] private UnitKinds kind;
         [SerializeField] private MonsterMovementController movementController;
 
-        private void Start()
+        public void Initialize()
         {
             movementController.Initialize(kind);
         }
