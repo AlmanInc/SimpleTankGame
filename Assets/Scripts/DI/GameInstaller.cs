@@ -7,11 +7,13 @@ namespace TankGameCore
     {
         [SerializeField] private CharacterStorage characterStorage;
         [SerializeField] private InputController inputControl;
+        [SerializeField] private GameController gameController;
 
         public override void InstallBindings()
         {
             Container.BindInstance(characterStorage).AsSingle();
             Container.BindInstance(inputControl).AsSingle();
+            Container.BindInstance(gameController).AsSingle();
         }
     }
 }

@@ -1,31 +1,32 @@
 using UnityEngine;
+using Zenject;
 
 namespace TankGameCore
 {
     public class CameraController : MonoBehaviour
     {
-        [SerializeField] private Transform player;
+        [SerializeField] private float distanceOffset;
+        [SerializeField] private float heightOffset;
+
+        [Inject] private GameController gameController;
 
         private Transform cachedTransform;
+        private Transform player;
         private Vector3 deltaRotation;
-        private float distanceOffset;
-        private float heightOffset;
-
+        
         private void Start()
         {
             cachedTransform = transform;
-            
-            deltaRotation = cachedTransform.rotation.eulerAngles - player.rotation.eulerAngles;
+            player = gameController.Player.transform;
 
-            Vector3 deltaPosition = cachedTransform.position - player.position;
-            distanceOffset = deltaPosition.z;
-            heightOffset = deltaPosition.y;
+            cachedTransform.position = player.position - player.forward * distanceOffset + player.up * heightOffset;
+            deltaRotation = cachedTransform.rotation.eulerAngles - player.rotation.eulerAngles;
         }
 
         private void LateUpdate()
         {
             cachedTransform.rotation = Quaternion.Euler(player.rotation.eulerAngles + deltaRotation);
-            cachedTransform.position = player.position + player.forward * distanceOffset + player.up * heightOffset;
+            cachedTransform.position = player.position - player.forward * distanceOffset + player.up * heightOffset;
         }
     }
 }

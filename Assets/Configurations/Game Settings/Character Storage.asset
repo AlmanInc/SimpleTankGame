@@ -17,17 +17,17 @@ MonoBehaviour:
     item:
       health: 100
       defense: 1
-      movementSpeed: 5
-      rotationSpeed: 45
+      movementSpeed: 5.5
+      rotationSpeed: 50
   - id: 1
     item:
       health: 40
       defense: 2
-      movementSpeed: 3.5
+      movementSpeed: 3
       rotationSpeed: 30
   - id: 2
     item:
       health: 60
       defense: 4
-      movementSpeed: 3
+      movementSpeed: 2.5
       rotationSpeed: 25

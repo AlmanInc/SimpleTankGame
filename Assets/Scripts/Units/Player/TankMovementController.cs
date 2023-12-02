@@ -8,11 +8,14 @@ namespace TankGameCore
         [Inject] private CharacterStorage storage;
         [Inject] private InputController input;
 
+        private Transform cachedTransform;
         private float movementSpeed;
         private float rotationSpeed;
 
         public void Initialize(UnitKinds kind)
         {
+            cachedTransform = transform;
+
             CharacterSettings data = storage.GetItem(kind);
             movementSpeed = data.movementSpeed;
             rotationSpeed = data.rotationSpeed;
@@ -23,13 +26,13 @@ namespace TankGameCore
 
         private void OnMoveAction(Vector3 movement)
         {            
-            transform.position += transform.forward.normalized * movement.z * movementSpeed * Time.deltaTime;
+            cachedTransform.position += cachedTransform.forward.normalized * movement.z * movementSpeed * Time.deltaTime;
             
             if (movement.x != 0f)
             {
-                var rotation = transform.rotation.eulerAngles;
+                var rotation = cachedTransform.rotation.eulerAngles;
                 rotation.y += movement.x;
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotation), Time.deltaTime * rotationSpeed);
+                cachedTransform.rotation = Quaternion.Slerp(cachedTransform.rotation, Quaternion.Euler(rotation), Time.deltaTime * rotationSpeed);
             }
         }
     }
