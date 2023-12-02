@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStorage: {fileID: 11400000, guid: b5f5cbb5fa3f8aa458e3de6653b72e22, type: 2}
-  spawnSettings: {fileID: 11400000, guid: c6f32c9042e95ef47938ca60cc08c60d, type: 2}
+  spawnData: {fileID: 11400000, guid: bb7f2b0b3438e01429d906d87fa93c66, type: 2}
   inputControl: {fileID: 2096284617}
   gameController: {fileID: 2023430909}
 --- !u!1 &599689760

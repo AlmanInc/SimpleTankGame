@@ -19,7 +19,10 @@ namespace TankGameCore
         {
             Player = container.InstantiatePrefab(tankController).GetComponent<TankController>();
             Player.transform.position = playerSpawnPoints[Random.Range(0, playerSpawnPoints.Length)].position;
+        }
 
+        private void Start()
+        {
             spawnSystem.Initialize();
         }
     }

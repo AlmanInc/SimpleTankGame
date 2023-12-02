@@ -10,7 +10,7 @@ namespace TankGameCore
         [SerializeField] private Transform[] spawnPoints;
 
         [Inject] DiContainer container;
-        [Inject] private SpawnSettings settings;
+        [Inject] private SpawnData settings;
 
         private int monstersCount;
 

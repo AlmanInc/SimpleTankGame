@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace TankGameCore
 {
-    [CreateAssetMenu(menuName = "SpawnSettings", fileName = "SpawnSettings")]
-    public class SpawnSettings : ScriptableObject
+    [CreateAssetMenu(menuName = "SpawnData", fileName = "SpawnData")]
+    public class SpawnData : ScriptableObject
     {
         [SerializeField] private int maxMonsters = 5;
         [SerializeField] private float minSpawnDelay = 1f;
