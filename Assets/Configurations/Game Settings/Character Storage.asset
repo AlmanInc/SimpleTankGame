@@ -27,7 +27,7 @@ MonoBehaviour:
       rotationSpeed: 30
   - id: 2
     item:
-      health: 60
-      defense: 0.15
+      health: 65
+      defense: 0.18
       movementSpeed: 2.5
       rotationSpeed: 25

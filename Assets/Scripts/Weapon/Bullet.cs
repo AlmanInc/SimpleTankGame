@@ -8,10 +8,12 @@ namespace TankGameCore
         [SerializeField] private Rigidbody rb;
 
         private WeaponSettings currentData;
+        private bool canDamage;
 
         public void Activate(WeaponSettings data, Vector3 direction)
         {
             currentData = data;
+            canDamage = true;
             StartCoroutine(BulletProcess(direction));
         }
         
@@ -34,13 +36,19 @@ namespace TankGameCore
 
             Destroy(this.gameObject);
         }
-
-        private void OnCollisionEnter(Collision collision)
-        {
+        
+        private void OnCollisionEnter(Collision collision)        
+        {            
             MonsterController monster = collision.gameObject.GetComponent<MonsterController>();
+
             if (monster != null)
             {
-                monster.ApplyDamage(currentData.damage);
+                if (canDamage)
+                {
+                    canDamage = false;
+                    monster.ApplyDamage(currentData.damage);
+                }
+
                 Destroy(this.gameObject);
             }
         }

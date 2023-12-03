@@ -7,6 +7,7 @@ namespace TankGameCore
     {
         [SerializeField] private CharacterStorage characterStorage;
         [SerializeField] private WeaponStorage weaponStorage;
+        [SerializeField] private MonstersDamageStorage damageStorage;
         [SerializeField] private SpawnData spawnData;
         [SerializeField] private InputController inputControl;
         [SerializeField] private GameController gameController;
@@ -15,6 +16,7 @@ namespace TankGameCore
         {
             Container.BindInstance(characterStorage).AsSingle();
             Container.BindInstance(weaponStorage).AsSingle();
+            Container.BindInstance(damageStorage).AsSingle();
             Container.BindInstance(spawnData).AsSingle();
             Container.BindInstance(inputControl).AsSingle();
             Container.BindInstance(gameController).AsSingle();

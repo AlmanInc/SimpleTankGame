@@ -8,12 +8,16 @@ namespace TankGameCore
         [Inject] private CharacterStorage storage;
         [Inject] private InputController input;
 
+        private CharacterController controller;
+        private Rigidbody rb;
         private Transform cachedTransform;
         private float movementSpeed;
         private float rotationSpeed;
 
         public void Initialize(UnitKinds kind)
         {
+            //controller = GetComponent<CharacterController>();
+            rb = GetComponent<Rigidbody>();
             cachedTransform = transform;
 
             CharacterSettings data = storage.GetItem(kind);
@@ -25,8 +29,15 @@ namespace TankGameCore
         }
 
         private void OnMoveAction(Vector3 movement)
-        {            
-            cachedTransform.position += cachedTransform.forward.normalized * movement.z * movementSpeed * Time.deltaTime;
+        {
+            Vector3 motion = cachedTransform.forward * movement.z * movementSpeed * Time.deltaTime;
+            //motion += Vector3.down * 0.9f;   // Gravity
+
+            //controller.Move(motion);
+
+            //cachedTransform.position += cachedTransform.forward * movement.z * movementSpeed * Time.deltaTime;
+
+            rb.MovePosition(cachedTransform.position + motion);
             
             if (movement.x != 0f)
             {

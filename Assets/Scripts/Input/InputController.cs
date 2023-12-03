@@ -70,7 +70,8 @@ namespace TankGameCore
             {
                 Vector3 movement = new Vector3(direction.x, 0f, direction.y);
                 OnMove?.Invoke(movement);
-                yield return null;
+                //yield return null;
+                yield return new WaitForFixedUpdate();
             }
 
             direction = Vector2.zero;

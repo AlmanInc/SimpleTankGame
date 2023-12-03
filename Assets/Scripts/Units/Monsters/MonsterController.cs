@@ -10,6 +10,9 @@ namespace TankGameCore
         [SerializeField] private HealthModule healthModule;
 
         [Inject] private EventsManager eventsManager;
+        [Inject] private MonstersDamageStorage damageStorage;
+
+        private float damage;
 
         public void Initialize()
         {
@@ -18,6 +21,8 @@ namespace TankGameCore
 
             healthModule.OnDie -= KillMonster;
             healthModule.OnDie += KillMonster;
+
+            damage = damageStorage.GetItem(kind);
         }
 
         public void ApplyDamage(float damage)
@@ -29,6 +34,19 @@ namespace TankGameCore
         {
             eventsManager.InvokeEvent(GameEvents.OnKillOneMonster);
             Destroy(this.gameObject);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            TankController target = collision.gameObject.GetComponent<TankController>();
+
+            if (target != null)
+            {
+                target.ApplyDamage(damage);
+
+                eventsManager.InvokeEvent(GameEvents.OnKillOneMonster);
+                Destroy(this.gameObject);
+            }
         }
     }
 }
