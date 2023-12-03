@@ -7,22 +7,42 @@ namespace TankGameCore
     {
         [SerializeField] private Rigidbody rb;
 
-        public void Activate(WeaponSettings data, Vector3 direction) => StartCoroutine(BulletProcess(data, direction));
+        private WeaponSettings currentData;
+
+        public void Activate(WeaponSettings data, Vector3 direction)
+        {
+            currentData = data;
+            StartCoroutine(BulletProcess(direction));
+        }
         
-        private IEnumerator BulletProcess(WeaponSettings data, Vector3 direction)
+        private IEnumerator BulletProcess(Vector3 direction)
         {
             transform.rotation = Quaternion.Euler(direction);
-            rb.velocity = direction.normalized * data.bulletSpeed;
 
-            float time = data.bulletLifetime;
+            Vector3 velocity = direction.normalized * currentData.bulletSpeed;
+            rb.velocity = velocity;
+
+            float time = currentData.bulletLifetime;
 
             while (time >= 0f)
             {
-                yield return null;
-                time -= Time.deltaTime;
+                yield return new WaitForFixedUpdate();
+                time -= Time.fixedDeltaTime;
+
+                rb.velocity = velocity;
             }
 
             Destroy(this.gameObject);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            MonsterController monster = collision.gameObject.GetComponent<MonsterController>();
+            if (monster != null)
+            {
+                monster.ApplyDamage(currentData.damage);
+                Destroy(this.gameObject);
+            }
         }
     }
 }
