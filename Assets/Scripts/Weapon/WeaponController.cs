@@ -62,7 +62,7 @@ namespace TankGameCore
         {
             yield return new WaitWhile(() => !isInitialized);
 
-            canFire = true;
+            canFire = false;
 
             while (true)
             {

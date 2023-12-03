@@ -24,8 +24,50 @@ namespace TankGameCore
             currentWeapon.gameObject.SetActive(true);
 
             input.OnFire += Fire;
+            input.OnChooseWeaponLeft += ChooseNextLeftWeapon;
+            input.OnChooseWeaponRight += ChooseNextRightWeapon;
+        }
+              
+        private void Fire() => currentWeapon.Fire();
+
+        private void ChooseNextLeftWeapon()
+        {
+            int index = GetCurrentWeaponIndex();
+            index++;
+
+            if (index >= weapons.Length)
+                index = 0;
+
+            ChangeWeapon(index);
         }
 
-        private void Fire() => currentWeapon.Fire();        
+        private void ChooseNextRightWeapon()
+        {
+            int index = GetCurrentWeaponIndex();
+            index--;
+
+            if (index < 0)
+                index = weapons.Length - 1;
+
+            ChangeWeapon(index);
+        }
+
+        private int GetCurrentWeaponIndex()
+        {
+            for (int i = 0; i < weapons.Length; i++)
+            {
+                if (currentWeapon == weapons[i])
+                    return i;
+            }
+
+            return 0;
+        }
+
+        private void ChangeWeapon(int index)
+        {
+            currentWeapon.gameObject.SetActive(false);
+            currentWeapon = weapons[index];
+            currentWeapon.gameObject.SetActive(true);
+        }
     }
 }

@@ -8,6 +8,8 @@ namespace TankGameCore
     {        
         public event Action<Vector3> OnMove;
         public event Action OnFire;
+        public event Action OnChooseWeaponLeft;
+        public event Action OnChooseWeaponRight;
 
         private InputControl input;
 
@@ -57,6 +59,9 @@ namespace TankGameCore
             };
 
             input.Main.Fire.canceled += _ => isFire = false;
+
+            input.Main.ChooseWeaponLeft.performed += _ => OnChooseWeaponLeft?.Invoke();
+            input.Main.ChooseWeaponRight.performed += _ => OnChooseWeaponRight?.Invoke();
         }
 
         private IEnumerator InputMovementProcess()
