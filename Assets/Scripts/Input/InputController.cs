@@ -5,20 +5,25 @@ using UnityEngine;
 namespace TankGameCore
 {
     public class InputController : MonoBehaviour
-    {
+    {        
         public event Action<Vector3> OnMove;
+        public event Action OnFire;
 
         private InputControl input;
-        private Coroutine movementCoroutine;
+
+        private Coroutine movementCoroutine;        
         private bool isMove;
         private Vector2 direction;
+
+        private Coroutine fireCoroutine;
+        private bool isFire;
 
         private void Awake() => input = new InputControl();
 
         private void OnEnable() => input.Enable();
 
         private void OnDisable() => input.Disable();
-
+        
         private void Start()
         {
             input.Main.Movement.performed += context =>
@@ -37,6 +42,21 @@ namespace TankGameCore
             };
 
             input.Main.Movement.canceled += _ => isMove = false;
+
+            input.Main.Fire.performed += _ =>
+            {
+                if (!isFire)
+                {
+                    isFire = true;
+
+                    if (fireCoroutine != null)
+                        StopCoroutine(fireCoroutine);
+
+                    fireCoroutine = StartCoroutine(FireProcess());
+                }
+            };
+
+            input.Main.Fire.canceled += _ => isFire = false;
         }
 
         private IEnumerator InputMovementProcess()
@@ -49,6 +69,15 @@ namespace TankGameCore
             }
 
             direction = Vector2.zero;
+        }
+
+        private IEnumerator FireProcess()
+        {
+            while (isFire)
+            {
+                OnFire?.Invoke();
+                yield return null;
+            }
         }
     }
 }

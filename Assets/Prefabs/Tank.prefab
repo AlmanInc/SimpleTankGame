@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 754832203720744400}
   - component: {fileID: 1020749274642950437}
   m_Layer: 0
-  m_Name: Weapon 1
+  m_Name: Weapon 1 (Destroyer)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -442,6 +442,7 @@ GameObject:
   - component: {fileID: 6155137150309715099}
   - component: {fileID: 2965108823318917998}
   - component: {fileID: 916823418606577443}
+  - component: {fileID: 4279890562574759457}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -482,6 +483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 0
   movementController: {fileID: 916823418606577443}
+  fireController: {fileID: 4279890562574759457}
 --- !u!114 &916823418606577443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +496,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8890eea97a163aa45b325b69e3c45264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4279890562574759457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344703358673794873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 450fa6e6fa8ddc8438fe0cc644c80c63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultWeapon: {fileID: 8176427070935933745}
+  weapons:
+  - {fileID: 1020749274642950437}
+  - {fileID: 8176427070935933745}
 --- !u!1 &6590961287071682243
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +661,7 @@ GameObject:
   - component: {fileID: 290940398148962231}
   - component: {fileID: 8176427070935933745}
   m_Layer: 0
-  m_Name: Weapon 2
+  m_Name: Weapon 2 (Twin)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

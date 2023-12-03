@@ -15,15 +15,15 @@ MonoBehaviour:
   storage:
   - id: 1
     item:
-      damage: 20
-      recharge: 0.4
+      damage: 15
+      recharge: 0.2
       bulletPrefab: {fileID: 4291740688288723160, guid: 05b1cc3ab1b8a78488ac81dd51261808, type: 3}
-      bulletSpeed: 18
-      bulletLifetime: 2.5
+      bulletSpeed: 16
+      bulletLifetime: 2
   - id: 0
     item:
       damage: 60
-      recharge: 1.1
+      recharge: 1.5
       bulletPrefab: {fileID: 8784678174676378503, guid: 620913830f9f81b4081683f8bb88c6ea, type: 3}
       bulletSpeed: 20
       bulletLifetime: 5
