@@ -16,7 +16,7 @@ MonoBehaviour:
   - id: 1
     item:
       damage: 8
-      recharge: 0.16
+      recharge: 0.15
       bulletPrefab: {fileID: 4291740688288723160, guid: 05b1cc3ab1b8a78488ac81dd51261808, type: 3}
       bulletSpeed: 16
       bulletLifetime: 2

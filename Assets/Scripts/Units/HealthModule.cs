@@ -30,7 +30,7 @@ namespace TankGameCore
 
         public void ApplyDamage(float damage)
         {
-            health = Mathf.Clamp(health - damage * defense, 0f, health);
+            health = Mathf.Clamp(health - damage * Mathf.Clamp01(1f - defense), 0f, health);
             lifeBar.fillAmount = Mathf.Clamp01(health / startHealth);
                         
             if (health <= 0f)

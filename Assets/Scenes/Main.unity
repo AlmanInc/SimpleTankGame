@@ -811,7 +811,7 @@ Transform:
   m_GameObject: {fileID: 1043273016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 20, y: 0.5, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1071,6 +1071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsters:
   - {fileID: 269945763326645213, guid: 351e102e7bf751647bda470e07b4f7b9, type: 3}
+  - {fileID: 8729525834147503970, guid: 1e53793d7c28752489d635d218f7ebcd, type: 3}
   spawnPoints:
   - {fileID: 1415115575}
   - {fileID: 312324244}

@@ -9,8 +9,9 @@ namespace TankGameCore
         [SerializeField] private MonsterController[] monsters;
         [SerializeField] private Transform[] spawnPoints;
 
-        [Inject] DiContainer container;
+        [Inject] private DiContainer container;
         [Inject] private SpawnData settings;
+        [Inject] private EventsManager eventsManager;
 
         private int monstersCount;
 
@@ -18,6 +19,13 @@ namespace TankGameCore
         {
             monstersCount = 0;
             StartCoroutine(SpawnProcess());
+
+            eventsManager.AddListener(GameEvents.OnKillOneMonster, MonsterWasKilled);
+        }
+
+        private void OnDisable()
+        {
+            eventsManager.RemoveListener(GameEvents.OnKillOneMonster, MonsterWasKilled);
         }
 
         private IEnumerator SpawnProcess()
@@ -44,6 +52,11 @@ namespace TankGameCore
 
             monster.Initialize();
             monstersCount++;
+        }
+
+        private void MonsterWasKilled(object[] args)
+        {
+            monstersCount = Mathf.Clamp(monstersCount - 1, 0, monstersCount);
         }
     }
 }

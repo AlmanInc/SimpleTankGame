@@ -18,6 +18,8 @@ namespace TankGameCore
             Container.BindInstance(spawnData).AsSingle();
             Container.BindInstance(inputControl).AsSingle();
             Container.BindInstance(gameController).AsSingle();
+
+            Container.Bind<EventsManager>().AsSingle();
         }
     }
 }

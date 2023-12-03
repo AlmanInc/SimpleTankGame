@@ -22,12 +22,12 @@ MonoBehaviour:
   - id: 1
     item:
       health: 40
-      defense: 0.25
+      defense: 0.1
       movementSpeed: 3
       rotationSpeed: 30
   - id: 2
     item:
       health: 60
-      defense: 0.4
+      defense: 0.15
       movementSpeed: 2.5
       rotationSpeed: 25

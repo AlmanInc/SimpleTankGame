@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace TankGameCore
 {
@@ -7,6 +8,8 @@ namespace TankGameCore
         [SerializeField] private UnitKinds kind;
         [SerializeField] private MonsterMovementController movementController;
         [SerializeField] private HealthModule healthModule;
+
+        [Inject] private EventsManager eventsManager;
 
         public void Initialize()
         {
@@ -24,6 +27,7 @@ namespace TankGameCore
 
         private void KillMonster()
         {
+            eventsManager.InvokeEvent(GameEvents.OnKillOneMonster);
             Destroy(this.gameObject);
         }
     }

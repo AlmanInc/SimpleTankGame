@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9514ecf1161f97e4da06dd6379763ac9, type: 3}
   m_Name: Spawn Data
   m_EditorClassIdentifier: 
-  maxMonsters: 6
+  maxMonsters: 10
   minSpawnDelay: 2
   maxSpawnDelay: 4
